@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Download apk</title>
+  <title>Find My PG - Download</title>
   <style>
     body {
       margin: 0;
@@ -12,27 +12,35 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       padding: 20px;
       box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
     }
     
     .header {
       text-align: left;
-      margin-bottom: 40px;
+      margin-bottom: auto; /* Pushes header to top */
+      padding-top: 20px;
     }
     
     .app-title {
       font-size: 2.2rem;
       font-weight: 700;
       color: #2c3e50;
-      margin-bottom: 5px;
+      margin: 0;
     }
     
-    
-    .download-container {
+    .download-wrapper {
+      flex-grow: 1;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
-      flex-grow: 1;
+      align-items: center;
+      margin-top: -20px; /* Adjust this to fine-tune vertical position */
+    }
+    
+    .download-container {
+      text-align: center;
+      width: 100%;
     }
     
     .download-btn {
@@ -116,15 +124,17 @@
     <h1 class="app-title">Find My PG</h1>
   </div>
   
-  <div class="download-container">
-    <a href="app-release.apk" download class="download-btn pulse">
-      <svg class="download-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M4 16V20H20V16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M12 4V16M12 16L8 12M12 16L16 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <span class="download-text">Download App</span>
-    </a>
-    <p class="version-info">Version 1.0.0 | 58 MB</p>
+  <div class="download-wrapper">
+    <div class="download-container">
+      <a href="app-release.apk" download class="download-btn pulse">
+        <svg class="download-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 16V20H20V16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 4V16M12 16L8 12M12 16L16 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="download-text">Download App</span>
+      </a>
+      <p class="version-info">Version 1.0.0 | 58 MB</p>
+    </div>
   </div>
 
   <script>
