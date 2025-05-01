@@ -3,16 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Download App</title>
+  <title>Find My PG - Download</title>
   <style>
     body {
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
       background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      flex-direction: column;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .app-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #2c3e50;
+      margin-bottom: 10px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .app-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: #4a6bff;
+      border-radius: 2px;
     }
     
     .download-container {
@@ -87,9 +114,19 @@
     .download-btn.pulse {
       animation: pulse 2s infinite;
     }
+    
+    .version-info {
+      margin-top: 20px;
+      color: #555;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
+  <div class="header">
+    <h1 class="app-title">Find My PG</h1>
+  </div>
+  
   <div class="download-container">
     <a href="app-release.apk" download class="download-btn pulse">
       <svg class="download-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -98,7 +135,7 @@
       </svg>
       <span class="download-text">Download App</span>
     </a>
-    <p style="margin-top: 20px; color: #555; font-size: 14px;">Version 1.0.0 | 60 MB</p>
+    <p class="version-info">Version 1.0.0 | 58 MB</p>
   </div>
 
   <script>
