@@ -4,29 +4,107 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Find My PG - Download</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
+    :root {
+      --primary-color: #4361ee;
+      --primary-dark: #3a56d4;
+      --secondary-color: #4cc9f0;
+      --text-dark: #2b2d42;
+      --text-light: #8d99ae;
+      --bg-light: #f8f9fa;
+      --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    
+    * {
       margin: 0;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      padding: 20px;
+      padding: 0;
       box-sizing: border-box;
+    }
+    
+    body {
+      min-height: 100vh;
+      background: var(--bg-gradient);
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-dark);
+      padding: 2rem;
       display: flex;
       flex-direction: column;
+      line-height: 1.6;
     }
     
     .header {
-      text-align: left;
-      margin-bottom: auto; /* Pushes header to top */
-      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: auto;
+      padding: 1rem 0;
     }
     
     .app-title {
-      font-size: 2.2rem;
+      font-size: 2.5rem;
       font-weight: 700;
-      color: #2c3e50;
+      color: var(--text-dark);
       margin: 0;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .app-title::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 60%;
+      height: 4px;
+      background: var(--primary-color);
+      border-radius: 2px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: var(--transition);
+    }
+    
+    .app-title:hover::after {
+      transform: scaleX(1);
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    .nav-link {
+      color: var(--text-dark);
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      padding: 0.5rem 0;
+      transition: var(--transition);
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary-color);
+      transition: var(--transition);
+    }
+    
+    .nav-link:hover {
+      color: var(--primary-color);
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
     }
     
     .download-wrapper {
@@ -35,12 +113,42 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      margin-top: -20px; /* Adjust this to fine-tune vertical position */
+      padding: 2rem 0;
     }
     
     .download-container {
       text-align: center;
+      max-width: 500px;
       width: 100%;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 3rem 2rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow-lg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transform: translateY(0);
+      transition: var(--transition);
+    }
+    
+    .download-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .app-icon {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 1.5rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow-md);
+      object-fit: cover;
+    }
+    
+    .app-description {
+      color: var(--text-light);
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
     }
     
     .download-btn {
@@ -48,24 +156,25 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 15px 30px;
-      background: #4a6bff;
+      padding: 1rem 2.5rem;
+      background: var(--primary-color);
       color: white;
-      font-size: 18px;
+      font-size: 1.1rem;
       font-weight: 600;
       text-decoration: none;
       border-radius: 50px;
       border: none;
       cursor: pointer;
       overflow: hidden;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(74, 107, 255, 0.3);
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+      z-index: 1;
     }
     
     .download-btn:hover {
-      background: #3a5bef;
-      box-shadow: 0 6px 20px rgba(74, 107, 255, 0.4);
-      transform: translateY(-2px);
+      background: var(--primary-dark);
+      box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
+      transform: translateY(-3px);
     }
     
     .download-btn:active {
@@ -79,8 +188,9 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: 0.5s;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: 0.7s;
+      z-index: -1;
     }
     
     .download-btn:hover::before {
@@ -88,7 +198,7 @@
     }
     
     .download-icon {
-      margin-right: 10px;
+      margin-right: 0.75rem;
       transition: transform 0.3s ease;
     }
     
@@ -98,7 +208,6 @@
     
     .download-text {
       position: relative;
-      z-index: 1;
     }
     
     /* Pulse animation */
@@ -113,9 +222,127 @@
     }
     
     .version-info {
-      margin-top: 20px;
-      color: #555;
-      font-size: 14px;
+      margin-top: 1.5rem;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    
+    .version-info span {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .feature-list {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    .feature {
+      background: rgba(255, 255, 255, 0.7);
+      padding: 1rem;
+      border-radius: 10px;
+      width: 120px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    
+    .feature:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .feature-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+    
+    .feature-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    
+    .footer {
+      text-align: center;
+      margin-top: auto;
+      padding: 1.5rem 0;
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    
+    .social-link {
+      color: var(--text-light);
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+    
+    .social-link:hover {
+      color: var(--primary-color);
+      transform: translateY(-2px);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .nav-links {
+        gap: 1rem;
+      }
+      
+      .download-container {
+        padding: 2rem 1.5rem;
+      }
+      
+      .feature-list {
+        gap: 1rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      body {
+        padding: 1rem;
+      }
+      
+      .app-title {
+        font-size: 2rem;
+      }
+      
+      .download-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+      }
+      
+      .feature {
+        width: 100px;
+        padding: 0.8rem;
+      }
+    }
+    
+    /* Confetti effect */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #f00;
+      opacity: 0;
+      pointer-events: none;
     }
   </style>
 </head>
@@ -126,27 +353,156 @@
   
   <div class="download-wrapper">
     <div class="download-container">
-      <a href="app-release.apk" download class="download-btn pulse">
+      <img src="./ic_launcher.png" alt="App Icon" class="app-icon">
+      <h2>Find Your Perfect PG</h2>
+      <p class="app-description">Discover affordable and comfortable PG accommodations near you with our easy-to-use app.</p>
+      
+      <a href="app-release.apk" download class="download-btn pulse" id="downloadBtn">
         <svg class="download-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M4 16V20H20V16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M12 4V16M12 16L8 12M12 16L16 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         <span class="download-text">Download App</span>
       </a>
-      <p class="version-info">Version 1.0.0 | 58 MB</p>
+      
+      <div class="version-info">
+        <span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#8d99ae" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 8V16M8 12H16" stroke="#8d99ae" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Version 1.2.0
+        </span>
+        <span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#8d99ae" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 12H22" stroke="#8d99ae" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 2C14.5013 4.73835 15.9228 8.29203 16 12C15.9228 15.708 14.5013 19.2616 12 22C9.49872 19.2616 8.07725 15.708 8 12C8.07725 8.29203 9.49872 4.73835 12 2V2Z" stroke="#8d99ae" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          62 MB
+        </span>
+      </div>
+      
+      <div class="feature-list">
+        <div class="feature">
+          <div class="feature-icon">🏠</div>
+          <div class="feature-title">PG Listings</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📍</div>
+          <div class="feature-title">Location Map</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">💰</div>
+          <div class="feature-title">Price Filter</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">⭐</div>
+          <div class="feature-title">Ratings</div>
+        </div>
+      </div>
     </div>
   </div>
 
+  <div class="footer">
+    <p>© 2025 Find My PG. All rights reserved.</p>
+  </div>
+
   <script>
-    // Add click effect
-    document.querySelector('.download-btn').addEventListener('mousedown', function() {
+    // Enhanced download button interaction
+    const downloadBtn = document.getElementById('downloadBtn');
+    
+    downloadBtn.addEventListener('mousedown', function() {
       this.classList.remove('pulse');
       this.style.transform = 'translateY(1px)';
     });
     
-    document.querySelector('.download-btn').addEventListener('mouseup', function() {
-      this.style.transform = 'translateY(-2px)';
+    downloadBtn.addEventListener('mouseup', function() {
+      this.style.transform = 'translateY(-3px)';
       setTimeout(() => this.classList.add('pulse'), 1000);
+    });
+    
+    downloadBtn.addEventListener('mouseleave', function() {
+      this.style.transform = '';
+    });
+    
+    // Confetti effect on download
+    downloadBtn.addEventListener('click', function(e) {
+      if (e.ctrlKey || e.metaKey) return; // Don't trigger for cmd/ctrl+click
+      
+      // Create confetti elements
+      for (let i = 0; i < 50; i++) {
+        createConfetti(e.clientX, e.clientY);
+      }
+    });
+    
+    function createConfetti(x, y) {
+      const colors = ['#4361ee', '#4cc9f0', '#7209b7', '#f72585', '#4895ef'];
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.left = x + 'px';
+      confetti.style.top = y + 'px';
+      confetti.style.opacity = '1';
+      
+      // Random shape
+      const shapes = ['circle', 'square', 'triangle'];
+      const shape = shapes[Math.floor(Math.random() * shapes.length)];
+      
+      if (shape === 'circle') {
+        confetti.style.borderRadius = '50%';
+      } else if (shape === 'triangle') {
+        confetti.style.width = '0';
+        confetti.style.height = '0';
+        confetti.style.backgroundColor = 'transparent';
+        confetti.style.borderLeft = '5px solid transparent';
+        confetti.style.borderRight = '5px solid transparent';
+        confetti.style.borderBottom = `10px solid ${colors[Math.floor(Math.random() * colors.length)]}`;
+      }
+      
+      // Random size
+      const size = Math.random() * 10 + 5;
+      confetti.style.width = size + 'px';
+      confetti.style.height = size + 'px';
+      
+      document.body.appendChild(confetti);
+      
+      // Animation
+      const angle = Math.random() * Math.PI * 2;
+      const velocity = 5 + Math.random() * 5;
+      const rotation = Math.random() * 360;
+      const rotationSpeed = (Math.random() - 0.5) * 20;
+      
+      let posX = x;
+      let posY = y;
+      let currentRotation = rotation;
+      
+      const animate = () => {
+        posX += Math.cos(angle) * velocity;
+        posY += Math.sin(angle) * velocity + 0.5; // Add gravity
+        currentRotation += rotationSpeed;
+        
+        confetti.style.left = posX + 'px';
+        confetti.style.top = posY + 'px';
+        confetti.style.transform = `rotate(${currentRotation}deg)`;
+        confetti.style.opacity = parseFloat(confetti.style.opacity) - 0.02;
+        
+        if (parseFloat(confetti.style.opacity) > 0) {
+          requestAnimationFrame(animate);
+        } else {
+          confetti.remove();
+        }
+      };
+      
+      requestAnimationFrame(animate);
+    }
+    
+    // Add slight parallax effect to download container
+    document.addEventListener('mousemove', (e) => {
+      const container = document.querySelector('.download-container');
+      const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+      const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+      container.style.transform = `translateY(-5px) rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
     });
   </script>
 </body>
